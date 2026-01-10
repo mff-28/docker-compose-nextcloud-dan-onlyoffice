@@ -29,8 +29,6 @@ Komunikasi internal:
 
 ---
 
-## Struktur Direktori Host
-
 /mnt/sdd1/
 ├── nextcloud/
 │ ├── app/ # Data Nextcloud
@@ -43,11 +41,6 @@ Komunikasi internal:
 └── docker/
 └── nextcloud-onlyoffice/
 └── docker-compose.yaml
-
-yaml
-Salin kode
-
----
 
 ## docker-compose.yaml
 
