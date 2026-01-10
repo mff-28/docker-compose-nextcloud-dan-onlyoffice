@@ -29,19 +29,6 @@ Komunikasi internal:
 
 ---
 
-/mnt/sdd1/
-├── nextcloud/
-│ ├── app/ # Data Nextcloud
-│ └── db/ # Database PostgreSQL
-├── onlyoffice/
-│ ├── data/ # Data OnlyOffice
-│ ├── logs/ # Log OnlyOffice
-│ ├── lib/ # Library OnlyOffice
-│ └── db/ # Database internal OnlyOffice
-└── docker/
-└── nextcloud-onlyoffice/
-└── docker-compose.yaml
-
 ## docker-compose.yaml
 
 File utama berisi tiga service:
