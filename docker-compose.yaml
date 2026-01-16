@@ -1,0 +1,51 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: nextcloud-postgres
+    restart: always
+    volumes:
+      - /mnt/sdd1/nextcloud/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: nextcloud
+      POSTGRES_USER: nextcloud
+      POSTGRES_PASSWORD: nextcloud_password
+    networks:
+      - nextcloud_net
+
+  nextcloud:
+    image: nextcloud:apache
+    container_name: nextcloud-app
+    restart: always
+    ports:
+      - "8050:80"
+    volumes:
+      - /mnt/sdd1/nextcloud/app:/var/www/html
+    environment:
+      POSTGRES_DB: nextcloud
+      POSTGRES_USER: nextcloud
+      POSTGRES_PASSWORD: nextcloud_password
+      POSTGRES_HOST: postgres
+    depends_on:
+      - postgres
+    networks:
+      - nextcloud_net
+
+  onlyoffice:
+    image: onlyoffice/documentserver
+    container_name: onlyoffice-documentserver
+    restart: unless-stopped
+    ports:
+      - "8051:80"
+    volumes:
+      - /mnt/sdd1/onlyoffice/data:/var/www/onlyoffice/Data
+      - /mnt/sdd1/onlyoffice/logs:/var/log/onlyoffice
+      - /mnt/sdd1/onlyoffice/lib:/var/lib/onlyoffice
+      - /mnt/sdd1/onlyoffice/db:/var/lib/postgresql
+    networks:
+      - nextcloud_net
+
+networks:
+  nextcloud_net:
+    driver: bridge
